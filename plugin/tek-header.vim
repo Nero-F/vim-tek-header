@@ -3,18 +3,7 @@
 " Maintainer:	Fahad Assoumani <fahad.assoumani@epitech.eu>
 " License:      This file is placed in the public domain
 
-" allow the user to disable the plugin
-if exist("g:loaded_tek_header")
-    finish
-endif
-let g:loaded_tek_header = 1
-
-if !hasmapto('<Plug>TekHeaderDump')
-    nnoremap <unique> <leader>h <Plug>TekHeaderDump
-endif
-nnoremap <unique> <script> <Plug>TekHeaderDump <SID>Dump
-
-" nnoremap <leader>h :call <SID>DumpTekHeader()<cr>
+nnoremap <leader>h :call <SID>DumpTekHeader()<cr>
 
 function! s:GetHeaderInfo(file_name)
     call inputsave()
@@ -59,7 +48,7 @@ function s:CStyleHeader(info_list, file_ext, year)
         " TODO: add class construcion function for hpp files
     endif
     
-    call setpos('.', ReturnNewlyPos(current_cursor_pos, 7))
+    call setpos('.', s:ReturnNewlyPos(current_cursor_pos, 7))
 endfunction
 
 function s:MakeStyleHeader(info_list, year)
@@ -72,7 +61,7 @@ function s:MakeStyleHeader(info_list, year)
                 \"## File description: ", "## " . a:info_list[1],
                 \"#", ""]
     call append(line('.') - 1, header)
-    call setpos('.', ReturnNewlyPos(current_cursor_pos, 7))
+    call setpos('.', s:ReturnNewlyPos(current_cursor_pos, 7))
 endfunction
 
 function! s:DumpTekHeader() 
@@ -83,9 +72,9 @@ function! s:DumpTekHeader()
     let file_name = expand("%:t:r")
 
     if !empty(matchstr(file_extension, reg_file_ext))
-        call CStyleHeader(GetHeaderInfo(file_name), file_extension, current_year)
+        call s:CStyleHeader(s:GetHeaderInfo(file_name), file_extension, current_year)
     elseif file_name == makefile
-        call MakeStyleHeader(GetHeaderInfo(file_name), current_year)
+        call s:MakeStyleHeader(s:GetHeaderInfo(file_name), current_year)
     else
         echo "Can't apply header, the file type is not recognize!"
     endif
