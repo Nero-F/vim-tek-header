@@ -33,7 +33,6 @@ function CStyleHeader(info_list, file_ext, year)
                 \"*/", ""]
     call append(line('.') - 1, header)
 
-    echom a:file_ext
     if (line_nb == 1 || line_nb == 0) && (a:file_ext ==# "h" || a:file_ext ==# "hpp")
         let cpp_header = toupper(a:info_list[1]) . (a:file_ext ==# "h" ? "_H_" : "_HPP_")
         let preprocessor_directives = [
