@@ -1,6 +1,22 @@
-nnoremap <leader>h :call <SID>DumpTekHeader()<cr>
+" Vim global plugin for EPITECH Headers
+" Last Change:	2020 June 10
+" Maintainer:	Fahad Assoumani <fahad.assoumani@epitech.eu>
+" License:      This file is placed in the public domain
 
-function! GetHeaderInfo(file_name)
+" allow the user to disable the plugin
+if exist("g:loaded_tek_header")
+    finish
+endif
+let g:loaded_tek_header = 1
+
+if !hasmapto('<Plug>TekHeaderDump')
+    nnoremap <unique> <leader>h <Plug>TekHeaderDump
+endif
+nnoremap <unique> <script> <Plug>TekHeaderDump <SID>Dump
+
+" nnoremap <leader>h :call <SID>DumpTekHeader()<cr>
+
+function! s:GetHeaderInfo(file_name)
     call inputsave()
     let project_name = input('Type Project Name => ')
     if empty(project_name)
@@ -18,11 +34,11 @@ function! GetHeaderInfo(file_name)
     return [project_name, file_desc]
 endfunction
 
-function ReturnNewlyPos(list, num)
+function s:ReturnNewlyPos(list, num)
     return [a:list[0], a:list[1] + a:num, a:list[2], a:list[3]]
 endfunction
 
-function CStyleHeader(info_list, file_ext, year)
+function s:CStyleHeader(info_list, file_ext, year)
     let line_nb = line('$')
     let current_cursor_pos = getpos('.')
     normal! gg
@@ -46,7 +62,7 @@ function CStyleHeader(info_list, file_ext, year)
     call setpos('.', ReturnNewlyPos(current_cursor_pos, 7))
 endfunction
 
-function MakeStyleHeader(info_list, year)
+function s:MakeStyleHeader(info_list, year)
     let line_nb = line('$')
     let current_cursor_pos = getpos('.')
     normal! gg
