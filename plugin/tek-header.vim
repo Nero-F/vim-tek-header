@@ -43,8 +43,8 @@ function CStyleHeader(info_list, file_ext, year)
         call append(line('.') - 1, preprocessor_directives)
         " TODO: add class construcion function for hpp files
     endif
-    let new_cursor_pos = returnnewlypos(current_cursor_pos, 7)
-    call setpos('.', new_cursor_pos)
+    
+    call setpos('.', ReturnNewlyPos(current_cursor_pos, 7))
 endfunction
 
 function MakeStyleHeader(info_list, year)
@@ -57,8 +57,7 @@ function MakeStyleHeader(info_list, year)
                 \"## File description: ", "## " . a:info_list[1],
                 \"#", ""]
     call append(line('.') - 1, header)
-    let new_cursor_pos = ReturnNewlyPos(current_cursor_pos, 7)
-    call setpos('.', new_cursor_pos)
+    call setpos('.', ReturnNewlyPos(current_cursor_pos, 7))
 endfunction
 
 function! s:DumpTekHeader() 
