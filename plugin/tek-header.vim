@@ -27,7 +27,7 @@ function CStyleHeader(info_list, file_ext, year)
     let current_cursor_pos = getpos('.')
     normal! gg
     let header = [
-                \"/*", "** EPITECH PROJECT " . a:year,
+                \"/*", "** EPITECH PROJECT, " . a:year,
                 \"** " . a:info_list[0],
                 \"** File description: ", "** " . a:info_list[1],
                 \"*/", ""]
@@ -51,7 +51,7 @@ function MakeStyleHeader(info_list, year)
     let current_cursor_pos = getpos('.')
     normal! gg
     let header = [
-                \"#", "## EPITECH PROJECT " . a:year,
+                \"#", "## EPITECH PROJECT, " . a:year,
                 \"## " . a:info_list[0],
                 \"## File description: ", "## " . a:info_list[1],
                 \"#", ""]
