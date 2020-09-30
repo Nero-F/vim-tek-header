@@ -34,7 +34,7 @@ function s:CStyleHeader(info_list, file_ext, year)
     let header = [
                 \"/*", "** EPITECH PROJECT, " . a:year,
                 \"** " . a:info_list[0],
-                \"** File description: ", "** " . a:info_list[1],
+                \"** File description:", "** " . a:info_list[1],
                 \"*/", ""]
     call append(line('.') - 1, header)
 
@@ -58,7 +58,7 @@ function s:MakeStyleHeader(info_list, year)
     let header = [
                 \"#", "## EPITECH PROJECT, " . a:year,
                 \"## " . a:info_list[0],
-                \"## File description: ", "## " . a:info_list[1],
+                \"## File description:", "## " . a:info_list[1],
                 \"#", ""]
     call append(line('.') - 1, header)
     call setpos('.', s:ReturnNewlyPos(current_cursor_pos, 7))
