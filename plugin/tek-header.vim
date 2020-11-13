@@ -41,9 +41,9 @@ function s:CStyleHeader(info_list, file_ext, year)
     if (line_nb == 1 || line_nb == 0) && (a:file_ext ==# "h" || a:file_ext ==# "hpp")
         let cpp_header = toupper(a:info_list[1]) . (a:file_ext ==# "h" ? "_H_" : "_HPP_")
         let preprocessor_directives = [
-                    \"#ifndef " . cpp_header,
-                    \"#define " . cpp_header, "", "",
-                    \"#endif /* " . cpp_header . " */" ]
+                    \"#ifndef " . a:info_list[0],
+                    \"#define " . a:info_list[0], "", "",
+                    \"#endif /* " . a:info_list[0] . " */" ]
         call append(line('.') - 1, preprocessor_directives)
         " TODO: add class construcion function for hpp files
     endif
