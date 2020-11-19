@@ -44,7 +44,7 @@ function s:CStyleHeader(info_list, file_ext, year)
                     \"#ifndef " . a:info_list[0],
                     \"#define " . a:info_list[0], "", "",
                     \"#endif /* " . a:info_list[0] . " */" ]
-        call append(line('.') - 1, preprocessor_directives)
+        call append(line('.'), preprocessor_directives)
         " TODO: add class construcion function for hpp files
     endif
     
