@@ -42,7 +42,7 @@ function s:CStyleHeader(info_list, file_ext, year)
         let cpp_header = toupper(a:info_list[1]) . (a:file_ext ==# "h" ? "_H_" : "_HPP_")
         let preprocessor_directives = [
                     \"#ifndef " . a:info_list[0],
-                    \"#define " . a:info_list[0], "", "",
+                    \"    #define " . a:info_list[0], "", "",
                     \"#endif /* " . a:info_list[0] . " */" ]
         call append(line('.'), preprocessor_directives)
         " TODO: add class construcion function for hpp files
@@ -56,10 +56,10 @@ function s:MakeStyleHeader(info_list, year)
     let current_cursor_pos = getpos('.')
     normal! gg
     let header = [
-                \"#", "## EPITECH PROJECT, " . a:year,
+                \"##", "## EPITECH PROJECT, " . a:year,
                 \"## " . a:info_list[0],
                 \"## File description:", "## " . a:info_list[1],
-                \"#", ""]
+                \"##", ""]
     call append(line('.') - 1, header)
     call setpos('.', s:ReturnNewlyPos(current_cursor_pos, 7))
 endfunction
